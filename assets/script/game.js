@@ -28,22 +28,23 @@ let game = {
 
         if(!this.firstCard) {
             this.firstCard = card
-            // this.firstCard.flipped = true;
+            this.firstCard.flipped = true;
             return true
         } else {
             this.secondCard = card
-            // this.secondCard.flipped = true;
+            this.secondCard.flipped = true;
             this.lockMode = true
             return true
-        }
-        
-       
+        } 
+    },
+
+    unflipCard() {
+        this.firstCard.flipped = false;
+        this.secondCard.flipped = false;
+        this.clearCards()
     },
 
     checkMatch: function() {
-        // if(!this.firstCard || !this.secondCard){
-        //     return false
-        // }
         return this.firstCard.icon === this.secondCard.icon
     },
 
@@ -57,7 +58,7 @@ let game = {
         this.cards = [];
         this.techs.forEach(tech => {
             this.cards.push(this.createPairfromTechs(tech))
-        }) 
+        })
         
         this.cards = this.cards.flatMap(push => push)
         this.shuffleCards()
@@ -81,6 +82,10 @@ let game = {
         return tech + parseInt(Math.random() * 1000)
     },
 
+    checkGameOver() {
+        return this.cards.filter(card => !card.flipped).length === 0;
+    },
+
     shuffleCards: function() {
         const currentIndex = this.cards.length // 20
         let randomIndex = 0;
@@ -91,5 +96,5 @@ let game = {
             
             [this.cards[i], this.cards[randomIndex]] = [this.cards[randomIndex], this.cards[i]]
         }
-    }
+    },
 }
