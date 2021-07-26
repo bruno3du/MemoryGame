@@ -5,4 +5,4 @@
 Clique no link a seguir para ter acesso ao game: https://bruno3du.github.io/MemoryGame/
 
 
-
+<img src="Jogo da memoria.gif">
